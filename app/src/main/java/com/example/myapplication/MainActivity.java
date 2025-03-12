@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -10,9 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.ak.ColoredDate;
-import com.ak.EventObjects;
-import com.ak.KalendarView;
+import com.example.myapplication.calendar.ColoredDate;
+import com.example.myapplication.calendar.EventObjects;
+import com.example.myapplication.calendar.KalendarView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -20,18 +21,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-
-class MyEventObjects extends  EventObjects {
-
-    public MyEventObjects(String message, Date date) {
-        super(message, date);
-    }
-
-    public String getMessage(Date date) {
-        return this.getMessage();
-    }
-
-}
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         datesColors.add(new ColoredDate(calendar.getTime(), getResources().getColor(R.color.green,null)));
         mKalendarView.setColoredDates(datesColors);
 
-
-        List<MyEventObjects> events = new ArrayList<>();
+        List<EventObjects> events = new ArrayList<>();
         Calendar calendar2 = new GregorianCalendar(2025,2,23);
-        events.add(new MyEventObjects("start holiday!",calendar2.getTime()));
+        events.add(new EventObjects("start holiday!",calendar2.getTime()));
+        events.add(new EventObjects("start holiday 2!",calendar2.getTime()));
         mKalendarView.setEvents(events);
 
         mKalendarView.setDateSelector(new KalendarView.DateSelector() {
